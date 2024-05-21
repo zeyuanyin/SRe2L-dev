@@ -55,10 +55,10 @@ def get_images(args, model_teacher, hook_for_display, ipc_id):
 
     # setup target labels
     # targets_all = torch.LongTensor(np.random.permutation(1000))
-    targets_all = torch.LongTensor(np.arange(100))
+    targets_all = torch.LongTensor(np.arange(10))
 
-    for kk in range(0, 100, batch_size):
-        targets = targets_all[kk : min(kk + batch_size, 100)].to("cuda")
+    for kk in range(0, 10, batch_size):
+        targets = targets_all[kk : min(kk + batch_size, 10)].to("cuda")
 
         data_type = torch.float
         inputs = torch.randn((targets.shape[0], 3, 32, 32), requires_grad=True, device="cuda", dtype=data_type)
@@ -175,14 +175,14 @@ def main_syn(args, ipc_id):
 
     import torchvision
 
-    model_teacher = torchvision.models.get_model("resnet18", num_classes=100)
+    model_teacher = torchvision.models.get_model("resnet18", num_classes=10)
     model_teacher.conv1 = nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
     model_teacher.maxpool = nn.Identity()
 
     model_teacher = nn.DataParallel(model_teacher).cuda()
 
-    checkpoint = torch.load(args.arch_path)
-    model_teacher.load_state_dict(checkpoint["state_dict"])
+    # checkpoint = torch.load(args.arch_path)
+    # model_teacher.load_state_dict(checkpoint["state_dict"])
 
     # ckp = '/home/zeyuan/My-Dataset-Distillation/cifar_train/save/resnet18_E10/ckpt.pth'
     # checkpoint = torch.load(ckp)
@@ -246,9 +246,14 @@ if __name__ == "__main__":
     # global wandb_metrics
     # wandb_metrics = {}
     # for ipc_id in range(0,50):
+    
+    import time
+    start_time = time.time()
+    
     for ipc_id in range(args.ipc_start, args.ipc_end):
         print("ipc = ", ipc_id)
         # wandb.log({'ipc_id': ipc_id})
         main_syn(args, ipc_id)
 
+    print(f" hours: {(time.time() - start_time) / 3600}")
     # wandb.finish()
