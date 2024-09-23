@@ -1,7 +1,8 @@
-# wandb disabled
-wandb enabled
-wandb online
+wandb disabled
+# wandb enabled
+# wandb online
 
+CUDA_VISIBLE_DEVICES=5 \
 python train_FKD.py \
     --wandb-project 'val_rn18_fkd' \
     --batch-size 1024 \
@@ -11,7 +12,7 @@ python train_FKD.py \
     -j 4 \
     -T 20 \
     --mix-type 'cutmix' \
-    --output-dir ./save/val_rn18_fkd/rn18_[4K]_T20/ \
-    --train-dir ../recover/syn_data/rn18_bn0.01_[4K]_x_l2_x_tv.crop \
-    --val-dir /path/to/imagenet/val \
-    --fkd-path ../relabel/FKD_cutmix_fp16
+    --output-dir ./save/add_sre2l_in1k_rn18_4k_ipc50 \
+    --train-dir /home/zeyuan/syn-data/sre2l_in1k_rn18_4k_ipc50 \
+    --val-dir /home/zeyuan/imagenet/val \
+    --fkd-path ./FKD_cutmix_fp16/
