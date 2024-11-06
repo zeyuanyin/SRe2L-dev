@@ -1,9 +1,11 @@
 # Dataset Distillation in Large Data Era
 
-Official PyTorch implementation of paper :
->[__"Dataset Distillation in Large Data Era"__](https://arxiv.org/abs/2311.18838)<br>
+Official PyTorch implementation of paper (TMLR):
+>[__"Dataset Distillation via Curriculum Data Synthesis in Large Data Era"__](https://openreview.net/forum?id=PlaZD2nGCl)<br>
 >[Zeyuan Yin](https://zeyuanyin.github.io), [Zhiqiang Shen](http://zhiqiangshen.com/)<br>
 >MBZUAI
+
+[`[Paper]`](https://openreview.net/forum?id=PlaZD2nGCl)
 
 <div align=center>
 <img style="width:30%" src="./img/method.png">
@@ -147,9 +149,9 @@ You can download distilled data from [![Hugging Face Datasets](https://img.shiel
 
 ```
 @article{yin2023dataset,
-  title={Dataset Distillation in Large Data Era},
+  title={Dataset Distillation via Curriculum Data Synthesis in Large Data Era},
   author={Yin, Zeyuan and Shen, Zhiqiang},
-  journal={arXiv preprint arXiv:2311.18838},
-  year={2023}
+  journal={Transactions on Machine Learning Research},
+  year={2024}
 }
 ```
